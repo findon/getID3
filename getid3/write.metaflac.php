@@ -86,8 +86,10 @@ class getid3_write_metaflac
 		$tempfilenames[] = $tempcommentsfilename;
 		if (getID3::is_writable($tempcommentsfilename) && is_file($tempcommentsfilename) && ($fpcomments = fopen($tempcommentsfilename, 'wb'))) {
 			foreach ($this->tag_data as $key => $value) {
-				foreach ($value as $commentdata) {
-					fwrite($fpcomments, $this->CleanmetaflacName($key).'='.$commentdata."\n");
+				if (is_array($value)) {
+					foreach ($value as $commentdata) {
+						fwrite($fpcomments, $this->CleanmetaflacName($key).'='.$commentdata."\n");
+					}
 				}
 			}
 			fclose($fpcomments);
