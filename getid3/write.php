@@ -591,7 +591,7 @@ class getid3_writetags
 								$tag_data_id3v2['APIC'][] = $apic_data_array;
 						} else {
 							$this->errors[] = 'ID3v2 APIC data is not properly structured';
-							//return false;
+							//return false; //Byta
 						}
 					}
 					break;
@@ -636,7 +636,7 @@ class getid3_writetags
 							$tag_data_id3v2['TXXX'][] = $txxx_data_array;
 						} else {
 							$this->errors[] = 'ID3v2 TXXX data is not properly structured';
-							//return false;
+							//return false; //Byta
 						}
 					}
 					break;
@@ -713,13 +713,13 @@ class getid3_writetags
 		// check for multi-line comment values - split out to multiple comments if neccesary
 		// and convert data to UTF-8 strings
 		foreach ($tag_data_vorbiscomment as $tag_key => $valuearray) {
-			if (is_array($valuearray)) {
+			if (is_array($valuearray)) { //Byta
 				foreach ($valuearray as $key => $value) {
 					if (($tag_key == 'ATTACHED_PICTURE') && is_array($value)) {
 						continue; // handled separately in write.metaflac.php
 					} else {
 						str_replace("\r", "\n", $value);
-						if (is_string($value) && strstr($value, "\n")) {
+						if (is_string($value) && strstr($value, "\n")) { //Byta
 							unset($tag_data_vorbiscomment[$tag_key][$key]);
 							$multilineexploded = explode("\n", $value);
 							foreach ($multilineexploded as $newcomment) {
