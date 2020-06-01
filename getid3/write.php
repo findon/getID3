@@ -591,7 +591,7 @@ class getid3_writetags
 								$tag_data_id3v2['APIC'][] = $apic_data_array;
 						} else {
 							$this->errors[] = 'ID3v2 APIC data is not properly structured';
-							return false;
+							//return false;
 						}
 					}
 					break;
