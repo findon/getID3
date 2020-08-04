@@ -257,7 +257,7 @@ class getID3
 	 */
 	protected $startup_warning = '';
 
-	const VERSION           = '1.9.19-202005202246';
+	const VERSION           = '1.9.20-202007201453';
 	const FREAD_BUFFER_SIZE = 32768;
 
 	const ATTACHMENTS_NONE   = false;
@@ -853,6 +853,14 @@ class getID3
 							'mime_type' => 'application/octet-stream',
 						),
 
+				// DSDIFF - audio     - Direct Stream Digital Interchange File Format
+				'dsdiff' => array(
+							'pattern'   => '^FRM8',
+							'group'     => 'audio',
+							'module'    => 'dsdiff',
+							'mime_type' => 'audio/dsd',
+						),
+
 				// DTS  - audio       - Dolby Theatre System
 				'dts'  => array(
 							'pattern'   => '^\\x7F\\xFE\\x80\\x01',
@@ -1343,6 +1351,16 @@ class getID3
 							'fail_ape'  => 'ERROR',
 						),
 
+				// TORRENT             - .torrent
+				'torrent' => array(
+							'pattern'   => '^(d8\\:announce|d7\\:comment)',
+							'group'     => 'misc',
+							'module'    => 'torrent',
+							'mime_type' => 'application/x-bittorrent',
+							'fail_id3'  => 'ERROR',
+							'fail_ape'  => 'ERROR',
+						),
+
 				 // CUE  - data       - CUEsheet (index to single-file disc images)
 				 'cue' => array(
 							'pattern'   => '', // empty pattern means cannot be automatically detected, will fall through all other formats and match based on filename and very basic file contents
@@ -1457,6 +1475,7 @@ class getID3
 				'flac'      => array('vorbiscomment' , 'UTF-8'),
 				'divxtag'   => array('divx'          , 'ISO-8859-1'),
 				'iptc'      => array('iptc'          , 'ISO-8859-1'),
+				'dsdiff'    => array('dsdiff'        , 'ISO-8859-1'),
 			);
 		}
 
